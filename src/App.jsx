@@ -2,8 +2,8 @@
 import './App.css';
 import AccountCircleOutlined from '@mui/icons-material/AccountCircleOutlined';
 import HomepageFeatures from './HomepageFeatures';
-import { logout } from 'thin-backend';
-import { ThinBackend, useCurrentUser } from 'thin-backend-react';
+// import { logout } from 'thin-backend';
+import { useCurrentUser } from 'thin-backend-react';
 
 function App() {
   const user = useCurrentUser();

@@ -10,7 +10,7 @@ const Feature = ({ feature }) => {
   };
 
   const handleMouseOut = () => {
-    setIsHovering(false);
+    setIsHovering(false); 
   };
 
   return (
@@ -20,8 +20,9 @@ const Feature = ({ feature }) => {
       <div className="feature-description" >{isHovering ? feature.description : ''}</div>
       <div className={isHovering ? "feature-price__hovering" : "feature-price"} >
         {`$ ${feature.price}`}
-        {isHovering ? <a href="#" class="feature-buy-button">
-          <LocalGroceryStoreIcon />Comprar</a> : ''}
+        <span onClick={() => alert('bought!')} className={isHovering ? "feature-buy-button" : "hidden"}>
+          <LocalGroceryStoreIcon />Comprar
+        </span> 
       </div>
     </div>
   );

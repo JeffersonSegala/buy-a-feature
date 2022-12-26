@@ -54,6 +54,10 @@ body {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
+.feature-card__bought {
+  box-shadow: rgb(255, 230, 1) 0px 0px 8px 0px;
+}
+
 .feature-title {
   font-weight: 900;
   line-height: 26px;

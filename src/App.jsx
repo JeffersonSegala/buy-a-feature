@@ -1,37 +1,52 @@
 import './App.css';
-import AccountCircleOutlined from '@mui/icons-material/AccountCircleOutlined';
 import Features from './Features';
 import { useCurrentUser } from 'thin-backend-react';
-import { updateRecord, createRecord, logout } from 'thin-backend';
+import { updateRecord, createRecord } from 'thin-backend';
+import { useState } from 'react';
+import ConfirmModal from './ConfirmModal';
+import Header from './Header';
+import { query } from 'thin-backend';
+import { useQuery } from 'thin-backend-react';
 
 function App() {
+  const [open, setOpen] = useState(false);
+  const [feature, setFeature] = useState(false);
   const user = useCurrentUser();
+  const features = useQuery(query('products').orderByDesc('id'));
+  // const deals = useQuery(query('deals').where('userId', user?.id).orderByDesc('id'));
+  
+  const handleOpen = (feature) => {
+    setOpen(true);
+    setFeature(feature);
+  };
 
-  const buyFn = (feature) => {
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleBuy = () => {
     const newBalance = user.balance - feature.price;
     if (newBalance < 0) {
       return;
     }
     createRecord('deals', { userId: user.id, productsId: feature.id });
     updateRecord('users', user.id, { balance: newBalance });
-  }
-
-  const header = () => {
-    return <div className="header-container">
-      <div className="header-balance">
-        Saldo: $ {user?.balance.toLocaleString('pt-br', {minimumFractionDigits: 2})}
-      </div>
-      <div className="header-user" >
-        <span>Olá, Kanandita {user?.email}</span>
-        <AccountCircleOutlined onClick={logout} style={{marginLeft: '10px'}}/>
-      </div>
-    </div>
+    features.find(f => f.id === feature.id).isBought = true
+    handleClose();
   }
 
   return (
     <div className="App">
-      {header()}
-      <Features buyFn={buyFn} />
+      <Header user={user} />
+      <Features 
+        features={features} 
+        handleBuy={handleOpen} />
+      <ConfirmModal 
+        open={open}
+        handleOpen={handleOpen}
+        handleClose={handleClose}
+        handleConfirm={handleBuy}
+        />
     </div>
   );
 }

@@ -1,26 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './App.css';
-import { query } from 'thin-backend';
-import { useQuery } from 'thin-backend-react';
 import Feature from './Feature';
 
-export default function Features({ buyFn }) {
-  const features = useQuery(query('products').orderByDesc('id'));
-  const deals = useQuery(query('deals').orderByDesc('id'));
-
-  useEffect(() => {
-    console.log('deals', deals)
-  }, [deals]);
-
+const Features = ({ features, handleBuy }) => {
   return (
     <div className="feature-container">
-      {features?.map((feature, index) => 
-        <Feature 
+      {features?.map((feature, index) => {
+        return <Feature 
           feature={feature} 
-          buyFn={buyFn} 
-          isBought={deals?.find(deal => deal.productsId === feature.id)}
+          handleBuy={handleBuy} 
           key={index} />
-      )}
+      })}
     </div>
   );
 }
+
+export default Features

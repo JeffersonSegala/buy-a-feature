@@ -13,7 +13,7 @@ body {
 .header-container {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .header-balance {
@@ -52,10 +52,15 @@ body {
   height: 200px;
   padding: 10px 15px 10px 15px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  transition: all .2s ease-in-out; 
+}
+
+.feature-card:hover { 
+  transform: scale(1.1); 
 }
 
 .feature-card__bought {
-  box-shadow: rgb(255, 230, 1) 0px 0px 8px 0px;
+  box-shadow: #22B92E 0px 0px 8px 0px;
 }
 
 .feature-title {
@@ -64,10 +69,17 @@ body {
   font-size: 24px;
 }
 
+.feature-title__hovering {
+  font-weight: 900;
+  line-height: 22px;
+  font-size: 20px;
+}
+
 .feature-description {
   line-height: 14px;
   font-size: 14px;
   padding: 10px 0px;
+  color: gray;
 }
 
 .feature-price {
@@ -83,7 +95,7 @@ body {
 }
 
 .feature-buy-button {
-	background-color: black;
+	background-color: #424242;
 	border-radius:50px;
 	cursor: pointer;
 	color: white;
@@ -95,7 +107,11 @@ body {
 }
 
 .feature-buy-button:hover {
-	background-color: gray;
+	background-color: #009688;
+}
+
+.feature-buy-button:active {
+	background-color: #22B92E;
 }
 
 .hidden {

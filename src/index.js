@@ -14,8 +14,8 @@ initThinBackend({
 ReactDOM.render(
     <React.StrictMode>
         <ThinBackend requireLogin>
-                <App />
-            </ThinBackend>
+            <App />
+        </ThinBackend>
     </React.StrictMode>,
     document.getElementById('root')
   );

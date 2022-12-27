@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './App.css';
+import './style.css';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 
 const Feature = ({ feature, handleBuy }) => {

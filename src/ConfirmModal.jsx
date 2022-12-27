@@ -5,15 +5,12 @@ const ConfirmModal = ({ open, handleClose, handleConfirm }) => {
   return (
       <Dialog
         open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
+        onClose={handleClose}>
+        <DialogTitle>
           {"Atenção"}
         </DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
+          <DialogContentText>
             Tem certeza que quer gastar seu precioso dinheirinho nisso?
           </DialogContentText>
         </DialogContent>

@@ -6,7 +6,6 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 
 const PurchaseModal = ({ open, handleClose, handleBuy, handleInvest, feature }) => {
-  const [showMessage, setShowMessage] = useState(false);
   const [sendValue, setSendValue] = useState(feature.price);
   const [purchaseModeBuy, setPurchaseModeBuy] = useState(true);
 

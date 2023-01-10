@@ -1,4 +1,5 @@
 .dealHistory-container {
     display: flex;
-    justify-content: left;
+    flex-direction: column;
+    align-items: self-start;
 }

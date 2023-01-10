@@ -3,7 +3,6 @@ import Features from './Features/Features';
 import { useCurrentUser } from 'thin-backend-react';
 import { updateRecord, createRecord } from 'thin-backend';
 import { useState } from 'react';
-import ConfirmModal from './ConfirmModal';
 import Header from './Header/Header';
 import { query } from 'thin-backend';
 import { useQuery } from 'thin-backend-react';
@@ -43,7 +42,9 @@ function App() {
   }
 
   const handleInvest = (value) => {
-    console.log('value', value)
+    if (value !== 'not implemented') {
+      return;
+    }
     handleCloseBuyConfirmation();
     setShowMessage('Invetimento efetuado');
   }

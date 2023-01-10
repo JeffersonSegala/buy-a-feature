@@ -10,18 +10,6 @@
     gap: 5px;
 }
 
-.header-transfer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 20px;
-    color: white;
-    background: rgb(30,182,55);
-    background: linear-gradient(90deg, rgba(30,182,55,1) 0%, rgba(4,152,129,1) 100%);
-    width: 29px;
-    cursor: pointer;
-}
-
 .header-balance {
     display: flex;
     align-items: center;

@@ -11,14 +11,12 @@ const Dealhistory = ({ features, user }) => {
     })
   }, [user?.id]);
 
-
-
   return (
     <div className='dealHistory-container'>
       <h1>Minhas compras</h1>
       <ul>
       {deals?.map(deal => {
-        return <li>{features.find(f => f.id === deal.productsId).title}</li>
+        return <li key={deal.id} >{features.find(f => f.id === deal.productsId).title}</li>
       })}
       </ul>
     </div>

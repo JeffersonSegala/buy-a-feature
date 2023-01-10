@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './style.css';
 import AccountCircleOutlined from '@mui/icons-material/AccountCircleOutlined';
 import { logout } from 'thin-backend';
-import CurrencyExchangeOutlinedIcon from '@mui/icons-material/CurrencyExchangeOutlined';
 import TransferModal from '../TransferModal/transferModal';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import Constants from '../Constants';
@@ -14,7 +13,7 @@ const Header = ({ user, page, setPage }) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleBuy = () => {
+  const handleTransfer = () => {
     setOpen(false);
   };
   
@@ -25,10 +24,7 @@ const Header = ({ user, page, setPage }) => {
   return (
     <div className="header-container">
       <div className="header-left-container">
-        <div className="header-transfer">
-          <CurrencyExchangeOutlinedIcon onClick={handleOpen} />
-        </div>
-        <div className="header-balance">
+        <div className="header-balance" onClick={handleOpen} >
           {formatedBalance()}
         </div>
         <div className='header-page-button'>
@@ -57,7 +53,7 @@ const Header = ({ user, page, setPage }) => {
         open={open}
         handleOpen={handleOpen}
         handleClose={handleClose}
-        handleConfirm={handleBuy}
+        handleConfirm={handleTransfer}
         />
     </div>
   );

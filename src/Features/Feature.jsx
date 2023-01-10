@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './style.css';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 
-const Feature = ({ feature, handleBuy }) => {
+const Feature = ({ feature, handleOpenPurchase }) => {
   const [isHovering, setIsHovering] = useState(false);
 
   const handleMouseOver = () => {
@@ -20,7 +20,7 @@ const Feature = ({ feature, handleBuy }) => {
       <div className="feature-description" >{isHovering ? feature.description : ''}</div>
       <div className={isHovering ? "feature-price__hovering" : "feature-price"} >
         {`$ ${feature.price}`}
-        <span onClick={() => handleBuy(feature)} className={isHovering ? "feature-buy-button" : "hidden"}>
+        <span onClick={() => handleOpenPurchase(feature)} className={isHovering ? "feature-buy-button" : "hidden"}>
           <LocalGroceryStoreIcon />Comprar
         </span> 
       </div>

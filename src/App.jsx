@@ -10,6 +10,7 @@ import { useQuery } from 'thin-backend-react';
 import { Snackbar } from '@mui/material';
 import Dealhistory from './DealHistory/DealHistory';
 import Constants from './Constants';
+import PurchaseModal from './PurchaseModal/purchaseModal';
 
 function App() {
   const [showMessage, setShowMessage] = useState(false);
@@ -18,8 +19,9 @@ function App() {
   const [page, setPage] = useState(Constants.PAGES.FEATURES);
   const user = useCurrentUser();
   const features = useQuery(query('products').orderByDesc('id'));
+  const handleClose = () => setOpen(false);
   
-  const handleOpen = (feature) => {
+  const handleOpenPurchase = (feature) => {
     setOpen(true);
     setFeature(feature);
   };
@@ -37,7 +39,13 @@ function App() {
     updateRecord('users', user.id, { balance: newBalance });
     features.find(f => f.id === feature.id).isBought = true
     handleCloseBuyConfirmation();
-    setShowMessage(true);
+    setShowMessage('Compra efetuada');
+  }
+
+  const handleInvest = (value) => {
+    console.log('value', value)
+    handleCloseBuyConfirmation();
+    setShowMessage('Invetimento efetuado');
   }
 
   return (
@@ -47,25 +55,26 @@ function App() {
       {page === Constants.PAGES.FEATURES ?
         <Features 
           features={features} 
-          handleBuy={handleOpen} />
+          handleOpenPurchase={handleOpenPurchase} />
       : <></>}
       {page === Constants.PAGES.DEAL_HISTORY ?
         <Dealhistory 
           features={features}
           user={user} />
       : <></>}
-
-      <ConfirmModal 
+      
+      <PurchaseModal 
         open={open}
-        handleOpen={handleOpen}
-        handleClose={handleCloseBuyConfirmation}
-        handleConfirm={handleBuy}
-        />
+        handleClose={handleClose}
+        handleBuy={handleBuy}
+        handleInvest={handleInvest}
+        feature={feature}
+      />
       <Snackbar
-        open={showMessage}
+        open={!!showMessage}
         autoHideDuration={3000}
         onClose={() => setShowMessage(false)}
-        message="Compra efetuada"
+        message={<>{showMessage}</>}
         action={<></>}
       />
     </div>

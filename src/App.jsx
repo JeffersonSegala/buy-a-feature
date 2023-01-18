@@ -9,7 +9,7 @@ import { useQuery } from 'thin-backend-react';
 import { Snackbar } from '@mui/material';
 import Dealhistory from './DealHistory/DealHistory';
 import Constants from './Constants';
-import PurchaseModal from './PurchaseModal/PurchaseModal';
+import PurchaseModal from './PurchaseModal3/PurchaseModal';
 
 function App() {
   const [showMessage, setShowMessage] = useState(false);

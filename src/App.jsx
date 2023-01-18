@@ -63,7 +63,7 @@ function App() {
 
       {page === Constants.PAGES.FEATURES ?
         <Features 
-          features={features.filter(f => !selectedCategory || f.category === selectedCategory)} 
+          features={features?.filter(f => !selectedCategory || f.category === selectedCategory)} 
           handleOpenPurchase={handleOpenPurchase} />
       : <></>}
       {page === Constants.PAGES.DEAL_HISTORY ?

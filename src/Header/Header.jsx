@@ -7,8 +7,9 @@ import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import Constants from '../Constants';
 import HomeIcon from '@mui/icons-material/Home';
 import { Tooltip } from '@mui/material';
+import Categories from '../Categories/Categories';
 
-const Header = ({ user, page, setPage }) => {
+const Header = ({ user, page, setPage, categories, selectedCategory, handleSelectCatagory }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -18,7 +19,7 @@ const Header = ({ user, page, setPage }) => {
   };
   
   const formatedBalance = () => {
-    return `Saldo: $ ${user?.balance.toLocaleString('pt-br', {minimumFractionDigits: 2})}`
+    return `Saldo: $ ${user?.balance.toLocaleString('pt-br', {minimumFractionDigits: 2}) || ''}`
   }
 
   return (
@@ -28,21 +29,29 @@ const Header = ({ user, page, setPage }) => {
           {formatedBalance()}
         </div>
         <div className='header-page-button'>
-        {page === Constants.PAGES.FEATURES ?
-          <Tooltip title="Ver minhas compras">
-            <LocalGroceryStoreIcon 
-              fontSize="small" 
-              onClick={() => setPage(Constants.PAGES.DEAL_HISTORY)} />
-          </Tooltip>
-        : <></>}
-        {page === Constants.PAGES.DEAL_HISTORY ?
-          <Tooltip title="Início">
-            <HomeIcon 
-              fontSize="small" 
-              onClick={() => setPage(Constants.PAGES.FEATURES)} />
-          </Tooltip>
-        : <></>}
+          {page === Constants.PAGES.FEATURES ?
+            <Tooltip title="Ver minhas compras">
+              <LocalGroceryStoreIcon 
+                fontSize="small" 
+                onClick={() => setPage(Constants.PAGES.DEAL_HISTORY)} />
+            </Tooltip>
+          : <></>}
+          {page === Constants.PAGES.DEAL_HISTORY ?
+            <Tooltip title="Início">
+              <HomeIcon 
+                fontSize="small" 
+                onClick={() => setPage(Constants.PAGES.FEATURES)} />
+            </Tooltip>
+          : <></>}
         </div>
+        
+      </div>
+      <div>
+        {page === Constants.PAGES.FEATURES ?
+        <Categories categories={categories} 
+          selectedCategory={selectedCategory} 
+          handleSelectCatagory={handleSelectCatagory} />
+        : <></>}
       </div>
       <div className="header-user" >
         <span>Olá, {user?.name}</span>

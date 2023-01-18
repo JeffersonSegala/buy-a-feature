@@ -16,10 +16,15 @@ function App() {
   const [open, setOpen] = useState(false);
   const [feature, setFeature] = useState(false);
   const [page, setPage] = useState(Constants.PAGES.FEATURES);
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const user = useCurrentUser();
   const features = useQuery(query('products').orderByDesc('id'));
   const handleClose = () => setOpen(false);
-  
+
+  const handleSelectCatagory = (event, newAlignment) => {
+    setSelectedCategory(newAlignment);
+  };
+
   const handleOpenPurchase = (feature) => {
     setOpen(true);
     setFeature(feature);
@@ -51,11 +56,14 @@ function App() {
 
   return (
     <div className="App">
-      <Header user={user} page={page} setPage={setPage} />
+      <Header user={user} page={page} setPage={setPage} 
+        categories={[...new Set(features?.map(f => f.category))]}
+        selectedCategory={selectedCategory} 
+        handleSelectCatagory={handleSelectCatagory} />
 
       {page === Constants.PAGES.FEATURES ?
         <Features 
-          features={features} 
+          features={features.filter(f => !selectedCategory || f.category === selectedCategory)} 
           handleOpenPurchase={handleOpenPurchase} />
       : <></>}
       {page === Constants.PAGES.DEAL_HISTORY ?

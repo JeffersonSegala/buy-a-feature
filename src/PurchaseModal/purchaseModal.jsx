@@ -1,20 +1,16 @@
 import './style.css';
 import { Box, InputAdornment, TextField, Typography } from '@mui/material';
 import Modal from '@mui/material/Modal';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 
-const PurchaseModal = ({ open, handleClose, handleBuy, handleInvest, feature }) => {
-  const [sendValue, setSendValue] = useState(feature.price);
-  const [purchaseModeBuy, setPurchaseModeBuy] = useState(true);
+const PurchaseModal = ({ open, handleClose, handleBuy, feature }) => {
+  const [reason, setReason] = useState('');
 
-  useEffect(() => {
-    setSendValue(feature.price)
-  }, [feature]);
-
-  const handleChangeSendValue = (e) => {
-    setSendValue(e.target.value)
+  const handleBuyButton = () => {
+    handleBuy(reason)
+    setReason('')
   }
 
   const style = {
@@ -29,7 +25,6 @@ const PurchaseModal = ({ open, handleClose, handleBuy, handleInvest, feature }) 
   };
 
   return (
-    <>
     <Modal
       open={open}
       onClose={handleClose} >
@@ -41,20 +36,7 @@ const PurchaseModal = ({ open, handleClose, handleBuy, handleInvest, feature }) 
           </Typography>
         </div>
         <br/>
-        <div className='purchase-mode-container' >
-          <div onClick={() => {
-            setPurchaseModeBuy(true)
-            setSendValue(feature.price)
-          }} className={purchaseModeBuy ? 'purchase-mode-button purchase-mode-button__active' : 'purchase-mode-button'} >
-            Comprar o produto
-          </div>
-          <div onClick={() => setPurchaseModeBuy(false)} className={!purchaseModeBuy ? 'purchase-mode-button purchase-mode-button__active' : 'purchase-mode-button'} >
-            Investir uma cota
-          </div>
-        </div>
-        <br/>
         <div>
-          {purchaseModeBuy ? 
           <TextField 
             type="number" 
             label="Valor do investimento" 
@@ -66,33 +48,28 @@ const PurchaseModal = ({ open, handleClose, handleBuy, handleInvest, feature }) 
             InputProps={{
               startAdornment: <InputAdornment position="start">$</InputAdornment>,
             }}
-            onChange={handleChangeSendValue}
             key='featureBuyValue' />
-            :
-          <TextField 
-            type="number" 
-            label="Valor do investimento" 
-            variant="standard"
-            defaultValue={sendValue} 
-            className='purchase-value'
-            helperText={'Informe o valor a ser investido'}
-            InputProps={{
-              startAdornment: <InputAdornment position="start">$</InputAdornment>,
-            }}
-            onChange={handleChangeSendValue} 
-            key='featureInvestValue' />
-          }
         </div>
         <br/>
+        <div>
+          <TextField 
+            type="text" 
+            label="Motivo da escolha" 
+            variant="standard"
+            value={reason} 
+            className='purchase-value'
+            helperText={'Opcional'}
+            onChange={(e) => setReason(e.target.value)}
+            key='reason' />
+        </div>
         <br/>
         <div className='purchase-button-container'>
-          <div onClick={purchaseModeBuy ? handleBuy : handleInvest} className='purchase-button' >
-            <CheckOutlinedIcon />{purchaseModeBuy ? 'Comprar' : 'Investir'}
+          <div onClick={handleBuyButton} className='purchase-button' >
+            <CheckOutlinedIcon />{'Comprar'}
           </div> 
         </div>
       </Box>
     </Modal>
-    </>
   );
 }
 

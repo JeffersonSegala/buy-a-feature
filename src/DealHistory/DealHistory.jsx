@@ -60,6 +60,7 @@ const Dealhistory = ({ features, user }) => {
                     <StyledTableCell align="center">{feature.title}</StyledTableCell>
                     <StyledTableCell align="left">{feature.description}</StyledTableCell>
                     <StyledTableCell align="left">${feature.price}</StyledTableCell>
+                    <StyledTableCell align="left">{deal.reason}</StyledTableCell>
                   </StyledTableRow>
                 })}
               </TableBody>

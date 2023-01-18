@@ -9,7 +9,7 @@ import { useQuery } from 'thin-backend-react';
 import { Snackbar } from '@mui/material';
 import Dealhistory from './DealHistory/DealHistory';
 import Constants from './Constants';
-import PurchaseModal from './PurchaseModal/purchaseModal';
+import PurchaseModal from './PurchaseModal/PurchaseModal';
 
 function App() {
   const [showMessage, setShowMessage] = useState(false);
@@ -34,24 +34,17 @@ function App() {
     setOpen(false);
   };
 
-  const handleBuy = () => {
+  const handleBuy = (reason) => {
     const newBalance = user.balance - feature.price;
     if (newBalance < 0) {
+      setShowMessage('Saldo insuficiente');
       return;
     }
-    createRecord('deals', { userId: user.id, productsId: feature.id });
+    createRecord('deals', { userId: user.id, productsId: feature.id, reason: reason });
     updateRecord('users', user.id, { balance: newBalance });
     features.find(f => f.id === feature.id).isBought = true
     handleCloseBuyConfirmation();
     setShowMessage('Compra efetuada');
-  }
-
-  const handleInvest = (value) => {
-    if (value !== 'not implemented') {
-      return;
-    }
-    handleCloseBuyConfirmation();
-    setShowMessage('Invetimento efetuado');
   }
 
   return (
@@ -63,7 +56,7 @@ function App() {
 
       {page === Constants.PAGES.FEATURES ?
         <Features 
-          features={features?.filter(f => !selectedCategory || f.category === selectedCategory)} 
+          features={features?.filter(f => !selectedCategory || f.category === selectedCategory).sort((f1, f2) => f1.price - f2.price)} 
           handleOpenPurchase={handleOpenPurchase} />
       : <></>}
       {page === Constants.PAGES.DEAL_HISTORY ?
@@ -76,7 +69,6 @@ function App() {
         open={open}
         handleClose={handleClose}
         handleBuy={handleBuy}
-        handleInvest={handleInvest}
         feature={feature}
       />
       <Snackbar

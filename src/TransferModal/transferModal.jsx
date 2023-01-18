@@ -29,7 +29,7 @@ const TransferModal = ({ user, open, handleClose }) => {
   }
 
   const handleSend = () => {
-    if (!sendValue || user.balance < sendValue) {
+    if (!sendValue || sendValue < 0 || user.balance < sendValue) {
       return;
     }
     updateRecord('users', user.id, { balance: parseFloat(user.balance) - parseFloat(sendValue) });

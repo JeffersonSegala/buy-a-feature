@@ -32,31 +32,6 @@
     justify-content: space-between;
 }
 
-.purchase-mode-container {
-    display: flex;
-    justify-content: space-between;
-}
-
-.purchase-mode-button {
-    background-color: white;
-    color: #009688;
-    border-radius:5px;
-    cursor: pointer;
-    font-size: 12px;
-    padding: 5px 10px;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 200px;
-    height: 25px;
-}
-
-.purchase-mode-button__active {
-    background-color: #009688;
-    color: white;
-}
-
 .purchase-value {
     width: 100%;
 }

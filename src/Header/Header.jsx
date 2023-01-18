@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './style.css';
 import AccountCircleOutlined from '@mui/icons-material/AccountCircleOutlined';
 import { logout } from 'thin-backend';
-import TransferModal from '../TransferModal/transferModal';
+import TransferModal from '../TransferModal/TransferModal';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import Constants from '../Constants';
 import HomeIcon from '@mui/icons-material/Home';

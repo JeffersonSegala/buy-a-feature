@@ -1,14 +1,26 @@
 import React from 'react';
 import './style.css';
-import { Paper, ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 
 const Categories = ({ categories, selectedCategory, handleSelectCatagory }) => {
-  
+  const [width, setWidth] = React.useState(window.innerWidth);
+  const [height, setHeight] = React.useState(window.innerHeight);
+  const handleWindowResize = () => {
+    setWidth(window.innerWidth);
+    setHeight(window.innerHeight);
+  };
+
+  React.useEffect(() => {
+    window.addEventListener("resize", handleWindowResize);
+    return () => window.removeEventListener("resize", handleWindowResize);
+  }, []);
+
   return (
-    <Paper variant="outlined" >
-      <ToggleButtonGroup
+      <ToggleButtonGroup 
+        className="categories-buttons"
         value={selectedCategory}
         exclusive
+        orientation={width < 800 ? 'vertical' : 'horizontal'}
         color="success"
         onChange={handleSelectCatagory}
         size="small"
@@ -19,7 +31,6 @@ const Categories = ({ categories, selectedCategory, handleSelectCatagory }) => {
           </ToggleButton>  
         )}
       </ToggleButtonGroup>
-    </Paper>
   );
 
 }

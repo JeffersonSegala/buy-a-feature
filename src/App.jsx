@@ -49,14 +49,14 @@ function App() {
 
   return (
     <div className="App">
-      <Header user={user} page={page} setPage={setPage} 
-        categories={[...new Set(features?.map(f => f.category))]}
-        selectedCategory={selectedCategory} 
-        handleSelectCatagory={handleSelectCatagory} />
+      <Header user={user} page={page} setPage={setPage} />
 
       {page === Constants.PAGES.FEATURES ?
         <Features 
           features={features?.filter(f => !selectedCategory || f.category === selectedCategory).sort((f1, f2) => f1.price - f2.price)} 
+          categories={[...new Set(features?.map(f => f.category))]}
+          selectedCategory={selectedCategory} 
+          handleSelectCatagory={handleSelectCatagory}
           handleOpenPurchase={handleOpenPurchase} />
       : <></>}
       {page === Constants.PAGES.DEAL_HISTORY ?

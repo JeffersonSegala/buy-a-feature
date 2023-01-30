@@ -1,13 +1,14 @@
 .header-container {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     margin-bottom: 15px;
-    height: 40px;
 }
 
 .header-left-container {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     gap: 5px;
 }
 

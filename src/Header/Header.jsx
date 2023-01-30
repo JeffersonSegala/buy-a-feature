@@ -9,7 +9,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import { Tooltip } from '@mui/material';
 import Categories from '../Categories/Categories';
 
-const Header = ({ user, page, setPage, categories, selectedCategory, handleSelectCatagory }) => {
+const Header = ({ user, page, setPage }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -44,14 +44,6 @@ const Header = ({ user, page, setPage, categories, selectedCategory, handleSelec
             </Tooltip>
           : <></>}
         </div>
-        
-      </div>
-      <div>
-        {page === Constants.PAGES.FEATURES ?
-        <Categories categories={categories} 
-          selectedCategory={selectedCategory} 
-          handleSelectCatagory={handleSelectCatagory} />
-        : <></>}
       </div>
       <div className="header-user" >
         <span>Olá, {user?.name}</span>

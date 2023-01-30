@@ -19,6 +19,7 @@ const PurchaseModal = ({ open, handleClose, handleBuy, feature }) => {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 450,
+    maxWidth: '80%',
     bgcolor: 'background.paper',
     boxShadow: 24,
     p: 4,

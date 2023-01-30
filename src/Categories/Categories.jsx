@@ -4,10 +4,8 @@ import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 
 const Categories = ({ categories, selectedCategory, handleSelectCatagory }) => {
   const [width, setWidth] = React.useState(window.innerWidth);
-  const [height, setHeight] = React.useState(window.innerHeight);
   const handleWindowResize = () => {
     setWidth(window.innerWidth);
-    setHeight(window.innerHeight);
   };
 
   React.useEffect(() => {
